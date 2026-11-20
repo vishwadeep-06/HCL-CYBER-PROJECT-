@@ -28,7 +28,7 @@
     .banner p { color: #e2e8f0; font-size: 0.92rem; }
     .badge-box { background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.25); padding: 10px 16px; border-radius: 12px; font-size: 0.84rem; }
 
-    .wrap { max-width: 1240px; margin: 28px auto 50px; padding: 0 5%; display: grid; grid-template-columns: 340px 1fr; gap: 24px; align-items: start; }
+    .wrap { max-width: 1240px; margin: 28px auto 50px; padding: 0 5%; display: grid; grid-template-columns: 350px 1fr; gap: 24px; align-items: start; }
     .card { background: var(--white); border-radius: 18px; box-shadow: 0 8px 22px rgba(15,47,95,0.07); border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 22px; }
     .c-head { padding: 15px 20px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
     .c-head h3 { font-size: 1.02rem; color: var(--navy); font-weight: 800; }
@@ -38,8 +38,9 @@
     .doc-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: 0 8px 20px rgba(0,0,0,0.2); margin-top: 32px; }
     .doc-name { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin-top: 8px; }
     .doc-spec { color: var(--teal); font-weight: 700; font-size: 0.92rem; }
+    .doc-id-pill { display: inline-block; margin-top: 6px; background: var(--sky); color: var(--navy); font-size: 0.78rem; font-weight: 800; padding: 3px 12px; border-radius: 50px; }
     .doc-meta { background: #f8fafc; border-top: 1px solid #e2e8f0; padding: 14px 20px; font-size: 0.84rem; color: var(--muted); }
-    .doc-meta p { margin-bottom: 5px; }
+    .doc-meta p { margin-bottom: 6px; }
 
     .care-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .care-item { border-radius: 10px; overflow: hidden; height: 105px; position: relative; }
@@ -50,6 +51,15 @@
     .info-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; }
     .info-box small { display: block; font-size: 0.72rem; font-weight: 700; color: var(--muted); text-transform: uppercase; }
     .info-box strong { font-size: 0.94rem; color: var(--navy); word-break: break-word; }
+
+    .doc-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .id-card { border: 1.5px solid #cbd5e1; border-radius: 14px; overflow: hidden; background: #f8fafc; transition: transform 0.25s ease; }
+    .id-card:hover { transform: translateY(-3px); }
+    .id-card-top { background: linear-gradient(135deg, var(--navy), var(--teal)); color: #fff; padding: 10px 14px; font-size: 0.82rem; font-weight: 800; display: flex; justify-content: space-between; align-items: center; }
+    .id-card-img-wrap { background: #fff; padding: 8px; border-bottom: 1px solid #e2e8f0; }
+    .id-card-img { width: 100%; height: 175px; object-fit: contain; display: block; border-radius: 8px; background: #f8fafc; }
+    .id-card-body { padding: 12px 14px; font-size: 0.83rem; color: var(--text); }
+    .id-card-body p { margin-bottom: 4px; }
 
     .med-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .full { grid-column: 1 / -1; }
@@ -63,7 +73,7 @@
     .toast.show { display: block; }
     footer { background: var(--navy-dark); color: #94a3b8; text-align: center; padding: 18px; font-size: 0.82rem; }
 
-    @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; } .info-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 960px) { .wrap { grid-template-columns: 1fr; } .info-grid { grid-template-columns: repeat(2, 1fr); } .doc-cards-grid { grid-template-columns: 1fr; } }
     @media (max-width: 600px) { .info-grid, .med-grid { grid-template-columns: 1fr; } .chip { display: none; } }
   </style>
 </head>
@@ -87,21 +97,25 @@
   <section class="banner">
     <div class="overlay"></div>
     <div class="banner-in">
-      <div><h2 id="w-title">Welcome, Patient</h2><p>Your personal patient record & specialist care details.</p></div>
+      <div><h2 id="w-title">Welcome, Patient</h2><p>Your personal patient record, uploaded identity cards & specialist care details.</p></div>
       <div class="badge-box">🔒 Active ID: <strong id="b-uid">---</strong></div>
     </div>
   </section>
 
   <main class="wrap">
     <aside>
+      <!-- Assigned Doctor Card with Doctor ID & Phone Number -->
       <div class="card">
         <div class="doc-top">
           <img class="doc-img" src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80" alt="Dr. Narendra Kumar" />
           <div class="doc-name" id="d-name">Dr. Narendra Kumar</div>
           <div class="doc-spec" id="d-spec">Eye Specialist</div>
-          <p style="font-size:0.82rem;color:var(--muted);padding:4px 14px 0;">Ophthalmology Dept, Yashoda Hospital</p>
+          <div class="doc-id-pill" id="d-id">Doctor ID: DOC-YH-0942</div>
+          <p style="font-size:0.82rem;color:var(--muted);padding:6px 14px 0;">Ophthalmology Dept, Yashoda Hospital</p>
         </div>
         <div class="doc-meta">
+          <p><strong>Doctor ID:</strong> DOC-YH-0942</p>
+          <p><strong>Doctor Phone:</strong> <span id="d-phone">+91-98104-XXXXX</span></p>
           <p><strong>Degree:</strong> MBBS, MS (Ophthalmology)</p>
           <p><strong>OPD:</strong> Mon–Sat, 10 AM – 4 PM</p>
           <p><strong>Room:</strong> Wing B, Room 204</p>
@@ -123,15 +137,84 @@
 
     <div>
       <div class="card">
-        <div class="c-head"><h3>🪪 Patient Information</h3><span style="font-size:0.78rem;color:var(--teal);font-weight:700;">Verified</span></div>
+        <div class="c-head"><h3>🪪 Patient Information</h3><span style="font-size:0.78rem;color:var(--teal);font-weight:700;">Clinical Profile</span></div>
         <div class="c-body">
           <div class="info-grid">
-            <div class="info-box"><small>Patient Name</small><strong id="p-name">-</strong></div>
+            <div class="info-box"><small>Patient Name</small><strong id="p-name">XYZ</strong></div>
             <div class="info-box"><small>Father's Name</small><strong id="p-father">-</strong></div>
             <div class="info-box"><small>User ID</small><strong id="p-uid">-</strong></div>
-            <div class="info-box"><small>Mobile Number</small><strong id="p-mob">-</strong></div>
+            <div class="info-box"><small>OPD ID Number</small><strong id="p-opd">453XXXX</strong></div>
+            <div class="info-box"><small>Insurance ID</small><strong id="p-ins">318HCSBHXXXXXX</strong></div>
+            <div class="info-box"><small>Phone Number</small><strong id="p-mob">XXX-XXX-XXXX</strong></div>
+            <div class="info-box"><small>DOB</small><strong id="p-dob">XX-XX-20XX</strong></div>
             <div class="info-box"><small>Email ID</small><strong id="p-email">-</strong></div>
             <div class="info-box"><small>Age & Gender</small><strong id="p-ag">-</strong></div>
+            <div class="info-box"><small>Disease</small><strong id="p-dis-badge">XXXX</strong></div>
+            <div class="info-box"><small>Blood Group</small><strong id="p-blood">B+</strong></div>
+            <div class="info-box"><small>Emergency Contact</small><strong id="p-emerg">+91-98XXX-XXXXX</strong></div>
+            <div class="info-box full"><small>Last Visit & Insurance Status</small><strong id="p-visit">20-11-2026 | Insurance ID: 318HCSBHXXXXXX</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Uploaded Identity & Health Card Screenshots -->
+      <div class="card">
+        <div class="c-head"><h3>💳 Identity & Health Cards (Uploaded Sample Cards)</h3><span style="font-size:0.78rem;color:var(--muted);">Privacy Protected</span></div>
+        <div class="c-body">
+          <div class="doc-cards-grid">
+            <!-- Aadhaar Card -->
+            <div class="id-card">
+              <div class="id-card-top"><span>Aadhaar Card</span><span>Redacted Demo</span></div>
+              <div class="id-card-img-wrap">
+                <img class="id-card-img" src="Screenshot 2026-11-20 174301.png" alt="Aadhaar Card Sample" />
+              </div>
+              <div class="id-card-body">
+                <p><strong>Name:</strong> XYZ</p>
+                <p><strong>DOB:</strong> XX-XX-20XX</p>
+                <p><strong>Aadhaar ID:</strong> [Aadhaar Redacted]</p>
+                <p><strong>Address:</strong> Plot XX, Demo Nagar, Ghaziabad, UP</p>
+              </div>
+            </div>
+
+            <!-- ABHA Health Card -->
+            <div class="id-card">
+              <div class="id-card-top"><span>ABHA Health Card</span><span>Demo ID</span></div>
+              <div class="id-card-img-wrap">
+                <img class="id-card-img" src="Screenshot 2026-11-20 174241.png" alt="ABHA Health Card Sample" />
+              </div>
+              <div class="id-card-body">
+                <p><strong>Name:</strong> XYZ</p>
+                <p><strong>ABHA Number:</strong> 91-0000-XXXX-XXXX</p>
+                <p><strong>ABHA Address:</strong> xyz.demo@abdm</p>
+                <p><strong>Linked OPD:</strong> 453XXXX</p>
+              </div>
+            </div>
+
+            <!-- PAN Card -->
+            <div class="id-card">
+              <div class="id-card-top"><span>PAN Card</span><span>Sample</span></div>
+              <div class="id-card-img-wrap">
+                <img class="id-card-img" src="Screenshot 2026-11-20 174225.png" alt="PAN Card Sample" />
+              </div>
+              <div class="id-card-body">
+                <p><strong>Name:</strong> XYZ</p>
+                <p><strong>PAN No.:</strong> ABCDE1234A</p>
+                <p><strong>DOB:</strong> XX-XX-20XX</p>
+              </div>
+            </div>
+
+            <!-- SBI ATM / Debit Card -->
+            <div class="id-card">
+              <div class="id-card-top"><span>SBI ATM / Debit Card</span><span>Sample</span></div>
+              <div class="id-card-img-wrap">
+                <img class="id-card-img" src="Screenshot 2026-11-20 174320.png" alt="SBI ATM Card Sample" />
+              </div>
+              <div class="id-card-body">
+                <p><strong>Card Holder:</strong> XYZ</p>
+                <p><strong>Card No.:</strong> XXXX XXXX XXXX XXXX</p>
+                <p><strong>Valid Thru:</strong> 06/26</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -143,10 +226,17 @@
           <form id="med-form">
             <div class="med-grid">
               <div class="grp"><label for="m-age">Age</label><input id="m-age" class="ctrl" placeholder="e.g., 28" /></div>
-              <div class="grp"><label for="m-gen">Gender</label><select id="m-gen" class="ctrl"><option value="Not Specified">Select</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+              <div class="grp"><label for="m-gen">Gender</label><select id="m-gen" class="ctrl"><option value="M" selected>M</option><option value="F">F</option><option value="Other">Other</option></select></div>
               <div class="grp"><label for="m-doc">Doctor's Name</label><input id="m-doc" class="ctrl" readonly /></div>
+              <div class="grp"><label for="m-docid">Doctor ID</label><input id="m-docid" class="ctrl" value="DOC-YH-0942" readonly /></div>
               <div class="grp"><label for="m-sp">Doctor's Speciality</label><input id="m-sp" class="ctrl" readonly /></div>
-              <div class="grp full"><label for="m-dis">Disease / Health Problem</label><input id="m-dis" class="ctrl" /></div>
+              <div class="grp"><label for="m-docph">Doctor's Phone Number</label><input id="m-docph" class="ctrl" value="+91-98104-XXXXX" readonly /></div>
+              <div class="grp"><label for="m-dob">DOB</label><input id="m-dob" class="ctrl" value="XX-XX-20XX" /></div>
+              <div class="grp"><label for="m-opd">OPD ID Number</label><input id="m-opd" class="ctrl" value="453XXXX" /></div>
+              <div class="grp"><label for="m-ins">Insurance ID</label><input id="m-ins" class="ctrl" value="318HCSBHXXXXXX" /></div>
+              <div class="grp"><label for="m-blood">Blood Group</label><input id="m-blood" class="ctrl" value="B+" /></div>
+              <div class="grp"><label for="m-emerg">Emergency Contact</label><input id="m-emerg" class="ctrl" value="+91-98XXX-XXXXX" /></div>
+              <div class="grp"><label for="m-dis">Disease / Health Problem</label><input id="m-dis" class="ctrl" value="XXXX" /></div>
               <div class="grp"><label for="m-sym">Symptoms</label><textarea id="m-sym" class="ctrl"></textarea></div>
               <div class="grp"><label for="m-all">Allergies</label><textarea id="m-all" class="ctrl"></textarea></div>
               <div class="grp full"><label for="m-his">Previous Medical History</label><textarea id="m-his" class="ctrl"></textarea></div>
@@ -177,29 +267,58 @@
 
       document.body.style.visibility = 'visible';
       document.getElementById('s-tok').textContent = `${s.token} (${s.time})`;
-      document.getElementById('nav-user').textContent = `${unclean(me.name)} (${me.userId})`;
-      document.getElementById('w-title').textContent = `Welcome, ${unclean(me.name)}`;
+      document.getElementById('nav-user').textContent = `XYZ (${me.userId})`;
+      document.getElementById('w-title').textContent = `Welcome, XYZ`;
       document.getElementById('b-uid').textContent = me.userId;
       fillUI();
     }
 
     function fillUI() {
-      const age = unclean(me.age || 'Not Specified'), gen = unclean(me.gender || 'Not Specified');
-      document.getElementById('p-name').textContent = unclean(me.name);
-      document.getElementById('p-father').textContent = unclean(me.fatherName);
+      const age = unclean(me.age || 'Not Specified');
+      const gen = 'M';
+      const dob = unclean(me.dob || 'XX-XX-20XX');
+      const opd = unclean(me.opdId || '453XXXX');
+      const ins = unclean(me.insuranceId || '318HCSBHXXXXXX');
+      const disease = unclean(me.disease || 'XXXX');
+      const blood = unclean(me.bloodGroup || 'B+');
+      const emerg = unclean(me.emergencyContact || '+91-98XXX-XXXXX');
+      const docName = unclean(me.doctorName || 'Dr. Narendra Kumar');
+      const docSpec = unclean(me.doctorSpeciality || 'Eye Specialist');
+      const docId = 'DOC-YH-0942';
+      const docPhone = '+91-98104-XXXXX';
+
+      document.getElementById('p-name').textContent = 'XYZ';
+      document.getElementById('p-father').textContent = unclean(me.fatherName || 'XYZ');
       document.getElementById('p-uid').textContent = me.userId;
-      document.getElementById('p-mob').textContent = unclean(me.mobile);
+      document.getElementById('p-opd').textContent = opd;
+      document.getElementById('p-ins').textContent = ins;
+      document.getElementById('p-mob').textContent = 'XXX-XXX-XXXX';
+      document.getElementById('p-dob').textContent = dob;
       document.getElementById('p-email').textContent = unclean(me.email);
       document.getElementById('p-ag').textContent = `${age} / ${gen}`;
+      document.getElementById('p-dis-badge').textContent = disease;
+      document.getElementById('p-blood').textContent = blood;
+      document.getElementById('p-emerg').textContent = emerg;
+      document.getElementById('p-visit').textContent = `20-11-2026 | Insurance ID: ${ins}`;
 
-      document.getElementById('d-name').textContent = unclean(me.doctorName);
-      document.getElementById('d-spec').textContent = unclean(me.doctorSpeciality);
-      document.getElementById('m-doc').value = unclean(me.doctorName);
-      document.getElementById('m-sp').value = unclean(me.doctorSpeciality);
+      document.getElementById('d-name').textContent = docName;
+      document.getElementById('d-spec').textContent = docSpec;
+      document.getElementById('d-id').textContent = `Doctor ID: ${docId}`;
+      document.getElementById('d-phone').textContent = docPhone;
+
+      document.getElementById('m-doc').value = docName;
+      document.getElementById('m-docid').value = docId;
+      document.getElementById('m-sp').value = docSpec;
+      document.getElementById('m-docph').value = docPhone;
 
       document.getElementById('m-age').value = age === 'Not Specified' ? '' : age;
       document.getElementById('m-gen').value = gen;
-      document.getElementById('m-dis').value = unclean(me.disease);
+      document.getElementById('m-dob').value = dob;
+      document.getElementById('m-opd').value = opd;
+      document.getElementById('m-ins').value = ins;
+      document.getElementById('m-blood').value = blood;
+      document.getElementById('m-emerg').value = emerg;
+      document.getElementById('m-dis').value = disease;
       document.getElementById('m-sym').value = unclean(me.symptoms);
       document.getElementById('m-all').value = unclean(me.allergies);
       document.getElementById('m-his').value = unclean(me.history);
@@ -210,8 +329,13 @@
       e.preventDefault();
       if (!me) return;
       me.age = clean(document.getElementById('m-age').value) || 'Not Specified';
-      me.gender = clean(document.getElementById('m-gen').value) || 'Not Specified';
-      me.disease = clean(document.getElementById('m-dis').value);
+      me.gender = clean(document.getElementById('m-gen').value) || 'M';
+      me.dob = clean(document.getElementById('m-dob').value) || 'XX-XX-20XX';
+      me.opdId = clean(document.getElementById('m-opd').value) || '453XXXX';
+      me.insuranceId = clean(document.getElementById('m-ins').value) || '318HCSBHXXXXXX';
+      me.bloodGroup = clean(document.getElementById('m-blood').value) || 'B+';
+      me.emergencyContact = clean(document.getElementById('m-emerg').value) || '+91-98XXX-XXXXX';
+      me.disease = clean(document.getElementById('m-dis').value) || 'XXXX';
       me.symptoms = clean(document.getElementById('m-sym').value);
       me.allergies = clean(document.getElementById('m-all').value);
       me.history = clean(document.getElementById('m-his').value);
